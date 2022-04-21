@@ -1,0 +1,25 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "利用.NET 6.0 开发Microsoft 365应用";
+}
+
+
+<div>基本信息</div>
+
+<div><b>@ViewData["me"]</b></div>
+
+<br />
+
+
+<div>邮件信息</div>
+<ol>
+    @if (ViewData["messages"] != null)
+    {
+        @foreach (var item in ViewData["messages"] as string[])
+        {
+            <li><b>@item</b></li>
+        }
+    }
+
+</ol>
