@@ -8,6 +8,7 @@ using Microsoft.IdentityModel.Tokens;
 using Graph = Microsoft.Graph;
 
 var builder = WebApplication.CreateBuilder(args);
+builder.Configuration.AddJsonFile("hosting.json");
 
 // Add services to the container.
 var initialScopes = builder.Configuration["DownstreamApi:Scopes"]?.Split(' ');
@@ -28,6 +29,7 @@ builder.Services.AddRazorPages()
     .AddMicrosoftIdentityUI();
 
 var app = builder.Build();
+
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
