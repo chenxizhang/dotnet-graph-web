@@ -7,16 +7,22 @@
 
 <div>基本信息</div>
 
-<div><b>@ViewData["me"]</b></div>
+@if (Model.Me != null)
+{
+    <div>
+        显示名称： @Model.Me.DisplayName ， 邮件地址：@Model.Me.UserPrincipalName
+    </div>
+
+}
 
 <br />
 
 
 <div>邮件信息</div>
 <ol>
-    @if (ViewData["messages"] != null)
+    @if (Model.Messages != null)
     {
-        @foreach (var item in ViewData["messages"] as string[])
+        @foreach (var item in Model.Messages)
         {
             <li><b>@item</b></li>
         }

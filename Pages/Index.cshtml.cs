@@ -9,6 +9,9 @@ namespace graphweb.Pages;
 [AuthorizeForScopes(ScopeKeySection = "DownstreamApi:Scopes")]
 public class IndexModel : PageModel
 {
+    public string[]? Messages { get; set; }
+    public User? Me { get; set; }
+
     private readonly ILogger<IndexModel> _logger;
 
     private readonly IDownstreamWebApi _downstreamWebApi;
@@ -26,10 +29,8 @@ public class IndexModel : PageModel
 
     public async Task OnGet()
     {
-        var me = await _client.Me.Request().GetAsync();
-        ViewData["me"] = $"显示名称：{me.DisplayName},邮件地址：{me.UserPrincipalName}";
-
+        Me = await _client.Me.Request().GetAsync();
         var messages = await _client.Me.Messages.Request().GetAsync();
-        ViewData["messages"] = messages.Select(x => x.Subject).ToArray();
+        Messages = messages.Select(x => x.Subject).ToArray();
     }
 }
