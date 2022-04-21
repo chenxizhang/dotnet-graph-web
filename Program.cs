@@ -8,7 +8,6 @@ using Microsoft.IdentityModel.Tokens;
 using Graph = Microsoft.Graph;
 
 var builder = WebApplication.CreateBuilder(args);
-builder.Configuration.AddJsonFile("hosting.json");
 
 // Add services to the container.
 var initialScopes = builder.Configuration["DownstreamApi:Scopes"]?.Split(' ');
