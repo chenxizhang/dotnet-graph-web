@@ -9,8 +9,6 @@ namespace graphweb.Pages;
 [AuthorizeForScopes(ScopeKeySection = "DownstreamApi:Scopes")]
 public class IndexModel : PageModel
 {
-    public string[]? Messages { get; set; }
-    public User? Me { get; set; }
 
     private readonly ILogger<IndexModel> _logger;
 
@@ -27,6 +25,9 @@ public class IndexModel : PageModel
 
     }
 
+
+    public string[]? Messages { get; set; }
+    public User? Me { get; set; }
     public async Task OnGet()
     {
         Me = await _client.Me.Request().GetAsync();
